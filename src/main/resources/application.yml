@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        testchannel:
+          consumer:
+            header-mode: raw
+          destination: t_test_topic
+          group: testgroup
+      binders:
+        kafka1:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: localhost:9092
+                      zknodes: localhost:2181
+
+  data:
+    cassandra:
+      cluster-name: test_cluster
+      contact-points: localhost
+      keyspace-name: ks_test
+      port: 9042
